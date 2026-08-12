@@ -1,6 +1,11 @@
 import { Button } from "./Button";
 
-export function Header() {
+type HeaderProps = {
+  onRunDemoScan: () => void;
+  onCopyReport: () => void;
+};
+
+export function Header({ onRunDemoScan, onCopyReport }: HeaderProps) {
   return (
     <header className="py-6">
       <h1 className="bold">A11y FixList</h1>
@@ -9,10 +14,10 @@ export function Header() {
       </p>
 
       <div className="mt-4 flex flex-wrap gap-3">
-        <Button>
+        <Button onClick={onRunDemoScan}>
           Run Demo Scan
         </Button>
-        <Button btnType={"secondary"}>
+        <Button btnType={"secondary"} onClick={onCopyReport}>
           Copy Markdown Report
         </Button>
       </div>

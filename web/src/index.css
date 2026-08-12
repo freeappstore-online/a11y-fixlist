@@ -303,3 +303,9 @@ h2 {
   background-color: var(--muted);
   color: var(--paper);
 }
+
+.data-panel {
+  background: var(--paper);
+  padding: 20px;
+  margin-bottom: 20px;
+}

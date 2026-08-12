@@ -1,3 +1,4 @@
+export { ExtractedDataPanel } from "./ExtractedDataPanel";
 export { Header } from "./Header";
-export { SummaryCards } from "./SummaryCards";
 export { IssueList } from "./IssueList";
+export { SummaryCards } from "./SummaryCards";
