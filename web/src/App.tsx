@@ -1,7 +1,7 @@
 import { initApp } from '@freeappstore/sdk'
 import { Shell, BuildInfo } from '@freeappstore/sdk/ui'
 import { ExtractedDataPanel, Header, SummaryCards, IssueList } from './components';
-import { createMarkdownReport, extractPageDataFromHtml, mockIssues, sampleHtml, scanHtml } from "./services";
+import { createMarkdownReport, extractPageDataFromHtml, sampleHtml, scanHtml } from "./services";
 import { useState } from "react";
 import type { A11yIssue, ExtractedPageData } from './types';
 
@@ -25,7 +25,7 @@ export default function App() {
       return;
     }
 
-    const report = createMarkdownReport(mockIssues);
+    const report = createMarkdownReport(issues);
     await navigator.clipboard.writeText(report);
     alert("Markdown report copied!");
   }
