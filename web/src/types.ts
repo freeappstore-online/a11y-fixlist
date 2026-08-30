@@ -2,6 +2,7 @@ export type Severity = "high" | "medium" | "low";
 
 export type A11yIssue = {
   id: string;
+  ruleId: string;
   category: "images" | "links" | "buttons" | "forms" | "headings" | "structure" | "contrast";
   severity: Severity;
   title: string;
@@ -9,6 +10,7 @@ export type A11yIssue = {
   selector: string;
   snippet: string;
   suggestion: string;
+  wcagRef?: string;
 };
 
 export type ExtractedHeading = {

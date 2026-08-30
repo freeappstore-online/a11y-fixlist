@@ -1,21 +1,30 @@
 import { initApp } from '@freeappstore/sdk'
 import { Shell, BuildInfo } from '@freeappstore/sdk/ui'
 import { ExtractedDataPanel, Header, SummaryCards, IssueList } from './components';
-import { createMarkdownReport, extractPageDataFromHtml, mockIssues, sampleHtml } from "./services";
+import { createMarkdownReport, extractPageDataFromHtml, mockIssues, sampleHtml, scanHtml } from "./services";
 import { useState } from "react";
-import type { ExtractedPageData } from './types';
+import type { A11yIssue, ExtractedPageData } from './types';
 
 const fas = initApp({ appId: 'a11y-fixlist' })
 
 export default function App() {
-  const [extractedData, setExtractedData ] = useState<ExtractedPageData | null>(null);
+  const [extractedData, setExtractedData] = useState<ExtractedPageData | null>(null);
+  const [issues, setIssues] = useState<A11yIssue[]>([]);
 
   function doDemoScan() {
     const data = extractPageDataFromHtml(sampleHtml);
+    const scanResults = scanHtml(sampleHtml);
+
     setExtractedData(data);
+    setIssues(scanResults);
   }
 
   async function doCopyReport() {
+    if (issues.length === 0) {
+      alert("No data found. Please run the demo scan.");
+      return;
+    }
+
     const report = createMarkdownReport(mockIssues);
     await navigator.clipboard.writeText(report);
     alert("Markdown report copied!");
@@ -26,8 +35,8 @@ export default function App() {
       <div className="mx-auto max-w-4xl">
         <Header onRunDemoScan={doDemoScan} onCopyReport={doCopyReport}/>
         <ExtractedDataPanel data={extractedData} />
-        <SummaryCards issues={mockIssues} />
-        <IssueList issues={mockIssues} />
+        <SummaryCards issues={issues} />
+        <IssueList issues={issues} />
       </div>
       <BuildInfo />
     </Shell>
