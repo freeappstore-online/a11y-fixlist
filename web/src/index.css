@@ -293,6 +293,7 @@ h2 {
 .issue-snippet {
   margin-top: 5px;
   display: flex;
+  white-space: pre-wrap;
 }
 
 .issue-snippet code {

@@ -16,7 +16,8 @@ export const sampleHtml = `
     <form>
       <label for="name">Name</label>
       <input id="name">
-      <input type="email" id="email" name="email">
+      <input type="email" id="email" name="email" aria-label="Email">
+      <input type="email" id="email" name="altEmail">
       <label for="message">Message</label>
       <textarea id="message" name="message"></textarea>
     </form>

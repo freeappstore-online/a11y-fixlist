@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <Shell app={fas} appName="a11y-fixlist">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl px-5">
         <Header onRunDemoScan={doDemoScan} onCopyReport={doCopyReport}/>
         <ExtractedDataPanel data={extractedData} />
         <SummaryCards issues={issues} />
