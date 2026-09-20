@@ -34,7 +34,7 @@ export function FilterBar({
   return (
     <section>
       <div className="flex justify-between">
-        <h2 className="bold">Filter issues by severity or category</h2>
+        <h2 className="bold">Filter issues</h2>
         <Button btnType="secondary" onClick={onResetFilters}>Reset filters</Button>
       </div>
 

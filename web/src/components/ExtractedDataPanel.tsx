@@ -43,8 +43,8 @@ export function ExtractedDataPanel({ data }: ExtractedDataPanelProps) {
         <h3 className="bold">Images</h3>
         <ul>
           {data.images.map((image, index) => (
-            <li key={`${image.src}-${index}`}>
-              src: {image.src || "(missing src)"} · alt: {image.alt ?? "(missing alt attribute)"}
+            <li className={"img-details"} key={`${image.src}-${index}`}>
+              src: <b>{image.src || "(missing src)"}</b> ; alt: <b>{image.alt ?? "(missing alt attribute)"}</b>
             </li>
           ))}
         </ul>

@@ -217,6 +217,14 @@ h2 {
   font-weight: bold;
 }
 
+.app-container {
+  padding: 0 20px;
+  margin: 0 auto;
+  @media (max-width: 787px) {
+    max-width: 100%;
+  }
+}
+
 .card-background {
   background-color: var(--paper);
 }
@@ -225,6 +233,9 @@ h2 {
   padding: 5px 10px;
   border-radius: 10px;
   cursor: pointer;
+  @media (max-width: 787px) {
+    width: calc(50% - 5px);
+  }
 }
 
 .button--primary {
@@ -236,6 +247,16 @@ h2 {
   border: 1px solid var(--line-strong);
   background: var(--paper);
   color: var(--ink);
+}
+
+.button--tertiary {
+  text-decoration: underline;
+}
+
+.mobile-full-width {
+  @media (max-width: 787px) {
+    width: 100%;
+  }
 }
 
 .label {
@@ -263,6 +284,10 @@ h2 {
 
 .label--low {
   color: var(--success);
+}
+
+li.img-details {
+  line-break: anywhere;
 }
 
 .issue-detail {
@@ -309,4 +334,30 @@ h2 {
   background: var(--paper);
   padding: 20px;
   margin-bottom: 20px;
+}
+
+.html-input {
+  margin-top: 16px;
+  margin-bottom: 6px;
+  background: var(--paper);
+  width: 100%;
+  max-width: 100%;
+  min-height: 14rem;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-family: monospace;
+  resize: vertical;
+}
+
+@media (min-width: 788px) {
+  .copy-button {
+    margin-left: auto;
+  }
+}
+
+.html-input:focus {
+  outline: 2px solid var(--muted);
 }
