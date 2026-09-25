@@ -336,8 +336,7 @@ li.img-details {
   margin-bottom: 20px;
 }
 
-.html-input {
-  margin-top: 16px;
+#html-input {
   margin-bottom: 6px;
   background: var(--paper);
   width: 100%;
@@ -352,12 +351,6 @@ li.img-details {
   resize: vertical;
 }
 
-@media (min-width: 788px) {
-  .copy-button {
-    margin-left: auto;
-  }
-}
-
-.html-input:focus {
+#html-input:focus {
   outline: 2px solid var(--muted);
 }

@@ -19,7 +19,7 @@ export function Button({
   return (
     <button
       type="button"
-      className={`button button--${btnType}${className ? ` ${className}` : " "}${mobileWidth === "full" ? " mobile-full-width" : ""}`}
+      className={`button button--${btnType}${className ? ` ${className}` : ""}${mobileWidth === "full" ? " mobile-full-width" : ""}`}
       {...props}
     >
       {children}

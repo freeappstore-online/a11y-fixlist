@@ -42,6 +42,22 @@ export default function App() {
     alert("Markdown report copied!");
   }
 
+  function downloadReport() {
+    const report = createMarkdownReport(issues);
+    const blob = new Blob([report], {
+      type: "text/markdown;charset=utf-8"
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "a11y-fixlist-report.md";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <Shell app={fas} appName="a11y-fixlist">
       <div className="max-w-4xl app-container">
@@ -52,6 +68,7 @@ export default function App() {
           onScan={doHtmlScan}
           onFillSample={doFillSample}
           onCopyReport={doCopyReport}
+          onDownloadReport={downloadReport}
         />
         <ExtractedDataPanel data={extractedData} />
         <SummaryCards issues={issues} />

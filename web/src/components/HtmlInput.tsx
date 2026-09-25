@@ -6,6 +6,7 @@ type HtmlInputProps = {
   onScan: () => void;
   onFillSample: () => void;
   onCopyReport: () => void;
+  onDownloadReport: () => void;
 };
 
 export function HtmlInput({
@@ -13,28 +14,34 @@ export function HtmlInput({
   onHtmlInputChange,
   onScan,
   onFillSample,
-  onCopyReport
+  onCopyReport,
+  onDownloadReport
 }: HtmlInputProps) {
   return (
     <section>
       <h2>HTML input</h2>
       <p>Paste HTML below for scanning.</p>
-      <textarea
-        className="html-input"
-        value={htmlInput}
-        onChange={(event) => onHtmlInputChange(event.target.value)}
-        rows={10}
-        spellCheck={false}
-      />
-      <div className="mb-4 flex flex-wrap gap-3">
+      <div className="my-2 flex gap-2">
         <Button onClick={onScan} mobileWidth="full">
           Scan pasted HTML
         </Button>
         <Button btnType="tertiary" mobileWidth="full" onClick={onFillSample}>
           Use sample HTML
         </Button>
-        <Button className="copy-button" btnType="secondary" mobileWidth="full" onClick={onCopyReport}>
+      </div>
+      <textarea
+        id="html-input"
+        value={htmlInput}
+        onChange={(event) => onHtmlInputChange(event.target.value)}
+        rows={10}
+        spellCheck={false}
+      />
+      <div className="my-2 flex gap-2">
+        <Button className="copy-button" mobileWidth="full" onClick={onCopyReport}>
           Copy Markdown Report
+        </Button>
+        <Button className="copy-button" btnType="secondary" mobileWidth="full" onClick={onDownloadReport}>
+          Download Markdown Report
         </Button>
       </div>
     </section>

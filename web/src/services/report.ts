@@ -11,16 +11,31 @@ export function getSeverityLabel(severity: Severity) {
 }
 
 export function createMarkdownReport(issues: A11yIssue[]) {
+  const scannedTime = new Date().toLocaleString();
+
   const lines = [
     "# A11y FixList Report",
     "",
-    `Total issues: ${issues.length}`,
+    "## Scan information",
+    "",
+    `- Scanned: ${scannedTime}`,
+    "",
+    `- Total issues: ${issues.length}`,
     "",
     "## Summary",
     "",
     `- High: ${countBySeverity(issues, "high")}`,
     `- Medium: ${countBySeverity(issues, "medium")}`,
     `- Low: ${countBySeverity(issues, "low")}`,
+    "",
+    "## List of checks performed",
+    "",
+    "- Missing image alt attributes",
+    "- Links without accessible text",
+    "- Buttons without accessible text",
+    "- Form fields without labels",
+    "- Skipped heading levels",
+    "- Duplicate IDs",
     "",
     "## Issues",
     ""
@@ -30,23 +45,33 @@ export function createMarkdownReport(issues: A11yIssue[]) {
     lines.push(
       `### ${index + 1}. ${issue.title}`,
       "",
-      `Severity: ${getSeverityLabel(issue.severity)}`,
-      `Category: ${issue.category}`,
-      `Selector: ${issue.selector}`,
+      `- Severity: ${getSeverityLabel(issue.severity)}`,
+      `- Category: ${issue.category}`,
+      `- Rule: ${issue.ruleId}`,
+      issue.wcagRef ? `- WCAG: ${issue.wcagRef}` : "",
+      `- Selector: ${issue.selector}`,
       "",
-      "Issue:",
+      "- Issue:",
       issue.message,
       "",
-      "Snippet:",
+      "- Snippet:",
       "----- start of html snippet -----",
       issue.snippet,
       "------ end of html snippet ------",
       "",
-      "Suggested fix:",
+      "- Suggested fix:",
       issue.suggestion,
       ""
     );
   });
 
-  return lines.join("\n");
+  lines.push(
+    "## Scope note",
+    "",
+    "A11y FixList provides automated first-pass accessibility checks only.",
+    "",
+    "A successful scan does not mean that a page is fully WCAG compliant. Manual accessibility review is still required."
+  );
+
+  return lines.filter(Boolean).join("\n");
 }
