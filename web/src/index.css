@@ -337,13 +337,12 @@ li.img-details {
 }
 
 #html-input {
-  margin-bottom: 6px;
   background: var(--paper);
   width: 100%;
   max-width: 100%;
   min-height: 14rem;
   border: 1px solid var(--line);
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 1rem;
   font-size: 0.75rem;
   line-height: 1.5;

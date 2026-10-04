@@ -21,14 +21,6 @@ export function HtmlInput({
     <section>
       <h2>HTML input</h2>
       <p>Paste HTML below for scanning.</p>
-      <div className="my-2 flex gap-2">
-        <Button onClick={onScan} mobileWidth="full">
-          Scan pasted HTML
-        </Button>
-        <Button btnType="tertiary" mobileWidth="full" onClick={onFillSample}>
-          Use sample HTML
-        </Button>
-      </div>
       <textarea
         id="html-input"
         value={htmlInput}
@@ -36,8 +28,17 @@ export function HtmlInput({
         rows={10}
         spellCheck={false}
       />
-      <div className="my-2 flex gap-2">
-        <Button className="copy-button" mobileWidth="full" onClick={onCopyReport}>
+      <div className="mb-4 flex gap-2 flex-wrap">
+        <Button onClick={onScan} mobileWidth="full">
+          Scan pasted HTML
+        </Button>
+        <Button btnType="tertiary" mobileWidth="full" onClick={onFillSample}>
+          Use sample HTML
+        </Button>
+      </div>
+      <div className="my-2 flex gap-2 flex-wrap">
+        <h2>Scan result</h2>
+        <Button className="copy-button ml-auto" mobileWidth="full" onClick={onCopyReport}>
           Copy Markdown Report
         </Button>
         <Button className="copy-button" btnType="secondary" mobileWidth="full" onClick={onDownloadReport}>

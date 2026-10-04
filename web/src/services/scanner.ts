@@ -5,7 +5,9 @@ import {
   checkEmptyLinks,
   checkFormLabels,
   checkHeadingOrder,
-  checkMissingImageAlt
+  checkMissingImageAlt,
+  checkBrokenLabelReferences,
+  checkGenericAltText
 } from "./rules";
 
 const severityRank: Record<Severity, number> = {
@@ -19,12 +21,14 @@ export function scanHtml(html: string): A11yIssue[] {
   const doc = parser.parseFromString(html, "text/html");
 
   const issues: A11yIssue[] = [
-    ...checkButtonNames(doc),
-    ...checkDuplicateIds(doc),
+    ...checkMissingImageAlt(doc),
+    ...checkGenericAltText(doc),
     ...checkEmptyLinks(doc),
+    ...checkButtonNames(doc),
+    ...checkBrokenLabelReferences(doc),
     ...checkFormLabels(doc),
     ...checkHeadingOrder(doc),
-    ...checkMissingImageAlt(doc)
+    ...checkDuplicateIds(doc)
   ];
 
   return [...issues].sort(
