@@ -5,9 +5,10 @@ import { Issue } from "./Issue";
 
 type IssueListProps = {
   issues: A11yIssue[];
+  jumpToIssue: (issue: A11yIssue) => void;
 };
 
-export function IssueList({ issues }: IssueListProps) {
+export function IssueList({ issues, jumpToIssue }: IssueListProps) {
   const [selectedSeverity, setSelectedSeverity] = useState<"all" | Severity>("all");
   const [selectedCategory, setSelectedCategory] = useState<"all" | A11yIssue["category"]>("all");
 
@@ -45,7 +46,7 @@ export function IssueList({ issues }: IssueListProps) {
       />
       <section className="space-y-4">
         {filteredIssues.map((filteredIssue) => (
-          <Issue key={filteredIssue.id} issue={filteredIssue} />
+          <Issue key={filteredIssue.id} issue={filteredIssue} jumpToIssue={jumpToIssue} />
         ))}
       </section>
     </>
