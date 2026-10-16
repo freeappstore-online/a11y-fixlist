@@ -56,3 +56,7 @@ Connect to the FreeAppStore MCP server for SDK docs, deploy status, and log quer
 ```
 
 Tools: `create_app`, `update_files`, `read_file`, `list_files`, `agent_build`, `agent_status`, `list_apps`, `app_info`, `deploy_status`, `app_logs`, `platform_guide`, `sdk_reference`.
+
+## Delivery mode
+
+**Straight to `main`. No branches, no pull requests.** Declared 2026-08-16.
