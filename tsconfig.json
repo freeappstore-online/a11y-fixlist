@@ -1,1 +1,1 @@
-{ "references": [{ "path": "./web" }], "files": [] }
+{ "compilerOptions": { "strict": true }, "references": [{ "path": "./web" }], "files": [] }

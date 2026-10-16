@@ -1,39 +1,120 @@
-# template-standalone
+# A11y FixList
 
-The standalone-app template used by [`fas init`](https://github.com/freeappstore-online/platform/tree/main/packages/cli) to scaffold new free apps for [FreeAppStore](https://freeappstore.online).
+A11y FixList is a lightweight accessibility review tool for developers and content editors. Paste HTML into the app to run a set of automated first-pass checks, review detected issues, filter results, and export a developer-friendly Markdown report.
 
-You almost certainly want to use the CLI, not clone this directly:
+The project is built as a standalone FreeAppStore web app using React, TypeScript and Vite.
+
+## Features
+
+- Scan pasted HTML for common accessibility issues
+- Show issue severity, category, affected element and suggested fix
+- Filter detected issues by severity and category
+- View extracted page information such as headings, images, links, buttons and form fields
+- Jump from an issue to the matching HTML source where it can be located
+- Copy or download scan results as a Markdown report
+- Use sample HTML for quick testing
+- Responsive interface for desktop and mobile use
+
+## Supported checks
+
+A11y FixList currently checks for:
+
+- Missing image `alt` attributes
+- Generic image alt text
+- Links without accessible text
+- Buttons without accessible text
+- Form fields without labels
+- Placeholder-only form labels
+- Broken `label for` and `aria-labelledby` references
+- Skipped heading levels
+- Duplicate IDs
+
+## Severity
+
+Issues are grouped into **High**, **Medium** and **Low** severity to help developers prioritise review and remediation.
+
+These severity levels are developer triage ratings used by this tool. They are not official WCAG conformance levels.
+
+## How to use
+
+1. Open A11y FixList.
+2. Paste HTML into the **HTML Input** field, or load the sample HTML.
+3. Select **Scan pasted HTML**.
+4. Review the detected issues and use the severity/category filters where needed.
+5. Select **View in HTML** to navigate back to the related source when a match can be found.
+6. Copy or download the Markdown report for review or follow-up work.
+
+## Scope and limitations
+
+A11y FixList provides automated first-pass accessibility checks only. A successful scan does not mean that a page is fully WCAG compliant, and manual accessibility review is still required.
+
+The current standalone version scans HTML pasted into the app. It does not inspect the DOM of an external browser tab or replace tools such as axe, WAVE, Lighthouse, assistive-technology testing or a professional accessibility audit.
+
+Some accessibility requirements cannot be reliably determined from static HTML alone, including areas such as colour contrast, keyboard behaviour, focus order, interaction behaviour, content meaning and the quality of alternative text.
+
+## Tech stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- FreeAppStore SDK
+- Progressive Web App support
+
+## Local development
+
+Requirements:
+
+- Node.js 22 or later
+- pnpm
+
+Install dependencies and start the development server:
 
 ```bash
-npm i -g @freeappstore/cli
-fas init my-app
+pnpm install
+pnpm dev
 ```
 
-The CLI clones this template, replaces every `freeappstore` placeholder with your app id, runs `git init`, and makes the first commit — the result is a runnable app you can `pnpm dev` immediately.
-
-## What's in here
-
-- `web/` — Vite + React + TypeScript app, ESM-only, no Tailwind config needed (utility classes via inline styles + the `Shell` component).
-- `web/src/components/Shell.tsx` — sidebar layout with brand fonts (Manrope + Fraunces), CSS variables (`--paper`, `--ink`, `--accent`), and dark-mode support out of the box.
-- `web/src/main.tsx` — React entry point.
-- `web/index.html` — links Manrope + Fraunces, sets PWA meta tags, references the manifest.
-- `web/public/manifest.json` — PWA manifest with `name`, `display`, `start_url`.
-- `package.json` — pnpm workspace, `dev` / `build` / `typecheck` / `test` scripts.
-- `.github/workflows/compliance.yml` — runs the same checks as `fas check` on every PR. Source of truth lives in the [`@freeappstore/compliance`](https://www.npmjs.com/package/@freeappstore/compliance) package.
-
-## Cloning manually (not recommended)
-
-If you really want to scaffold by hand:
+Useful checks:
 
 ```bash
-git clone https://github.com/freeappstore-online/template-standalone my-app
-cd my-app
-# Replace freeappstore → my-app in package.json, web/index.html, web/src/main.tsx, README, etc.
-rm -rf .git && git init
-pnpm install && pnpm dev
+pnpm typecheck
+pnpm lint
+pnpm test
+pnpm build
 ```
 
-Then run `fas publish` to provision repo + hosting + DNS, or open the [submission form](https://github.com/freeappstore-online/submissions/issues/new) for maintainer review.
+## Project structure
+
+```text
+web/src/
+├─ components/       UI components
+├─ services/         Scanner, extraction and report logic
+│  └─ rules/         Accessibility rule implementations
+├─ App.tsx
+├─ main.tsx
+└─ types.ts
+```
+
+## Testing
+
+The project includes automated tests for scanner and report behaviour, including accessibility rule edge cases and regression scenarios.
+
+Run the test suite with:
+
+```bash
+pnpm test
+```
+
+Run coverage with:
+
+```bash
+pnpm test:coverage
+```
+
+## Future improvements
+
+Potential future improvements include browser-page scanning through a companion bookmarklet or browser extension, additional accessibility rules, richer source-location matching and expanded component/integration testing.
 
 ## License
 

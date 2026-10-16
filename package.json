@@ -3,13 +3,15 @@
   "private": true,
   "packageManager": "pnpm@9.15.4",
   "engines": { "node": ">=22" },
-  "pnpm": { "onlyBuiltDependencies": ["esbuild"] },
   "repository": { "type": "git", "url": "git+https://github.com/freeappstore-online/a11y-fixlist.git" },
   "scripts": {
     "dev": "pnpm --filter @a11y-fixlist/web dev",
     "build": "pnpm --filter @a11y-fixlist/web build",
     "preview": "pnpm --filter @a11y-fixlist/web preview",
-    "typecheck": "pnpm --filter @a11y-fixlist/web exec tsc -b",
-    "test": "pnpm --filter @a11y-fixlist/web exec tsc -b"
+    "typecheck": "pnpm --filter @a11y-fixlist/web typecheck",
+    "lint": "pnpm --filter @a11y-fixlist/web lint",
+    "lint:fix": "pnpm --filter @a11y-fixlist/web lint:fix",
+    "test": "pnpm --filter @a11y-fixlist/web test",
+    "test:coverage": "pnpm --filter @a11y-fixlist/web test:coverage"
   }
 }
