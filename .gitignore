@@ -3,6 +3,7 @@ dist
 .vite
 *.local
 .DS_Store
+web/coverage/
 
 # TypeScript incremental build cache
 *.tsbuildinfo
