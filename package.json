@@ -1,9 +1,14 @@
 {
   "name": "a11y-fixlist",
   "private": true,
-  "packageManager": "pnpm@9.15.4",
-  "engines": { "node": ">=22" },
-  "repository": { "type": "git", "url": "git+https://github.com/freeappstore-online/a11y-fixlist.git" },
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freeappstore-online/a11y-fixlist.git"
+  },
   "scripts": {
     "dev": "pnpm --filter @a11y-fixlist/web dev",
     "build": "pnpm --filter @a11y-fixlist/web build",
